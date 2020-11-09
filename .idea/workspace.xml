@@ -14,7 +14,20 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e577c5bd-8750-4b70-b577-0f2352a768e7" name="Default Changelist" comment="" />
+    <list default="true" id="e577c5bd-8750-4b70-b577-0f2352a768e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/addcreature/CreatureActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/addcreature/CreatureActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/allcreatures/AllCreatureViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/allcreatures/AllCreatureViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/allcreatures/AllCreaturesActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/allcreatures/AllCreaturesActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_all_creatures.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_all_creatures.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,19 +50,26 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
         <option value="Kotlin Class" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1j3L8B13Xhk9HRbOzjmKpygqdLm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_XL_API_24" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-18T13:32:04.012Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_XL_API_24" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-26T08:50:36.107Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../2-011-testing-mvi/2-011-testing-mvi/end" />
@@ -60,6 +80,9 @@
   <component name="RecentsManager">
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.raywenderlich.android.creaturemon.addcreature" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.raywenderlich.android.creaturemon.util" />
     </key>
   </component>
   <component name="RunManager">
@@ -140,10 +163,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="510" y="126" key="#PSD/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603618417923" />
-    <state x="748" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1603633355412">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="532" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1604747293201">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="748" y="236" key="#com.intellij.ide.util.MemberChooser/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603633355412" />
+    <state x="532" y="160" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1604747293201" />
+    <state x="748" y="236" key="#com.intellij.ide.util.MemberChooser/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603700649338" />
     <state x="694" y="177" width="535" height="686" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1603626200448">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -156,25 +180,65 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603027894922" />
-    <state width="1877" height="624" key="GridCell.Tab.0.bottom" timestamp="1603621797377">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="407" key="GridCell.Tab.0.bottom" timestamp="1604751061672">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1877" height="624" key="GridCell.Tab.0.bottom/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603621797377" />
-    <state width="1877" height="624" key="GridCell.Tab.0.center" timestamp="1603621797377">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="407" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604751061672" />
+    <state width="1877" height="347" key="GridCell.Tab.0.bottom/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102648" />
+    <state width="1323" height="407" key="GridCell.Tab.0.center" timestamp="1604751061672">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1877" height="624" key="GridCell.Tab.0.center/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603621797377" />
-    <state width="1877" height="624" key="GridCell.Tab.0.left" timestamp="1603621797376">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="407" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604751061672" />
+    <state width="1877" height="347" key="GridCell.Tab.0.center/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102647" />
+    <state width="1323" height="407" key="GridCell.Tab.0.left" timestamp="1604751061672">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1877" height="624" key="GridCell.Tab.0.left/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603621797376" />
-    <state width="1877" height="624" key="GridCell.Tab.0.right" timestamp="1603621797377">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1323" height="407" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604751061672" />
+    <state width="1877" height="347" key="GridCell.Tab.0.left/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102647" />
+    <state width="1323" height="407" key="GridCell.Tab.0.right" timestamp="1604751061672">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1877" height="624" key="GridCell.Tab.0.right/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603621797377" />
+    <state width="1323" height="407" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604751061672" />
+    <state width="1877" height="347" key="GridCell.Tab.0.right/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102647" />
+    <state width="1323" height="222" key="GridCell.Tab.1.bottom" timestamp="1604750963897">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604750963897" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102648" />
+    <state width="1323" height="222" key="GridCell.Tab.1.center" timestamp="1604750963897">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1604750963897" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102648" />
+    <state width="1323" height="222" key="GridCell.Tab.1.left" timestamp="1604750963897">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1604750963897" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102648" />
+    <state width="1323" height="222" key="GridCell.Tab.1.right" timestamp="1604750963897">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="222" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1604750963897" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603706102648" />
     <state x="701" y="162" key="refactoring.ChangeSignatureDialog" timestamp="1603632800855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="701" y="162" key="refactoring.ChangeSignatureDialog/1920.564.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1603632800855" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/addcreature/CreatureActivity.kt</url>
+          <line>158</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/raywenderlich/android/creaturemon/addcreature/AddCreatureProcessorHolder.kt</url>
+          <line>62</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

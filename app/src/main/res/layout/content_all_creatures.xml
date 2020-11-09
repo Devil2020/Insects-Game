@@ -15,7 +15,7 @@
       app:layout_constraintTop_toTopOf="parent"
       android:id="@+id/allCreatureProgressBar"
       android:indeterminate="true"
-      android:alpha="0"
+      android:visibility="invisible"
       android:progressTint="@color/colorPrimary"
       android:layout_marginTop="10dp"
       android:indeterminateTint="@color/colorPrimary"
@@ -30,7 +30,9 @@
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       android:textSize="20sp"
-      android:alpha="0"
+      android:id="@+id/youDidnotHaveData"
+
+      android:visibility="invisible"
 
       />
 
@@ -39,7 +41,7 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:layout_marginTop="20dp"
-    android:alpha="0"
+    android:visibility="invisible"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

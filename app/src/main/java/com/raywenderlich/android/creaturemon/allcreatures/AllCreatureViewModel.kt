@@ -2,6 +2,7 @@ package com.raywenderlich.android.creaturemon.allcreatures
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.raywenderlich.android.creaturemon.mvibase.MviViewModel
 import com.raywenderlich.android.creaturemon.util.notOfType
 import io.reactivex.Observable
@@ -12,30 +13,31 @@ import io.reactivex.subjects.PublishSubject
 class AllCreatureViewModel(
         private var ourApplicaton: Application,
         private var actionProcessorHolder: AllCreatureProcessHolder
-) : AndroidViewModel(ourApplicaton), MviViewModel<AllCreatureIntents, AllCreatureState> {
+) : ViewModel(), MviViewModel<AllCreatureIntents, AllCreatureState> {
 
     public var intentsSubjects: PublishSubject<AllCreatureIntents> = PublishSubject.create()
-    public var stateObservable: Observable<AllCreatureState> = compose()
-    public var intentFilter = ObservableTransformer<AllCreatureIntents, AllCreatureIntents> {
-        it?.publish {
-            Observable.merge(
-                    it?.ofType(AllCreatureIntents.LoadAllCreatureIntent::class.java).take(1),
-                    it?.notOfType(AllCreatureIntents.LoadAllCreatureIntent::class.java)
-            )
+    public var stateObservable: Observable<AllCreatureState> = viewModelExecutor()
+    public val intentFilter: ObservableTransformer<AllCreatureIntents, AllCreatureIntents>
+        get() = ObservableTransformer {
+            it?.publish {
+                Observable.merge(
+                        it?.ofType(AllCreatureIntents.LoadAllCreatureIntent::class.java).take(1),
+                        it?.notOfType(AllCreatureIntents.LoadAllCreatureIntent::class.java)
+                )
+            }
         }
-    }
 
-    private fun compose() : Observable<AllCreatureState> {
+    // This function that get All Data
+    private fun viewModelExecutor(): Observable<AllCreatureState> {
         return intentsSubjects
-                .compose(intentFilter)
-                .map{actionFromIntent(it)}
-                .compose(actionProcessorHolder.actionProcessor)
-                .scan(AllCreatureState.defaultState(), reducer)
+                .compose(intentFilter) // 1 - Must make a filter for which type of Intents i must work on it
+                .map { actionFromIntent(it) } // 2 - Convert Intent to Action
+                .compose(actionProcessorHolder.actionProcessor) // 3- Excute our Repository And Convert Action To Result
+                .scan(AllCreatureState.defaultState(), reducer) // 4- Reduce our result And Convert it To State
                 .distinctUntilChanged()
                 .replay(1)
                 .autoConnect(0)
     }
-
 
 
     private fun actionFromIntent(intent: AllCreatureIntents) = when (intent) {
@@ -52,7 +54,7 @@ class AllCreatureViewModel(
     }
 
     companion object {
-       val reducer = BiFunction { previousState: AllCreatureState, currentResult: AllCreatureResult ->
+        val reducer = BiFunction { previousState: AllCreatureState, currentResult: AllCreatureResult ->
             return@BiFunction when (currentResult) {
 
                 is AllCreatureResult.LoadAllCreatureResult -> {

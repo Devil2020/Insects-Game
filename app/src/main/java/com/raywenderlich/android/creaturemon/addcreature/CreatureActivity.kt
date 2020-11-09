@@ -37,91 +37,156 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
 import com.raywenderlich.android.creaturemon.R
+import com.raywenderlich.android.creaturemon.addcreature.avatars.AddCreatureState
 import com.raywenderlich.android.creaturemon.data.model.AttributeStore
 import com.raywenderlich.android.creaturemon.data.model.AttributeValue
 import com.raywenderlich.android.creaturemon.data.model.Avatar
 import com.raywenderlich.android.creaturemon.addcreature.avatars.AvatarAdapter
 import com.raywenderlich.android.creaturemon.addcreature.avatars.AvatarBottomDialogFragment
+import com.raywenderlich.android.creaturemon.allcreatures.AllCreatureViewModel
+import com.raywenderlich.android.creaturemon.mvibase.MviView
+import com.raywenderlich.android.creaturemon.util.AddCreatureViewModelFactory
+import com.raywenderlich.android.creaturemon.util.AllCreatureViewModelFactory
+import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_creature.*
 
 
-class CreatureActivity : AppCompatActivity(), AvatarAdapter.AvatarListener {
+class CreatureActivity : AppCompatActivity(), AvatarAdapter.AvatarListener, MviView<AddCreatureIntents, AddCreatureState> {
+    private var currentImageValue = 0
+    private var creatureNameValue = ""
+    private var intelliganceValue = 0
+    private var strengthValue = 0
+    private var enduranceValue = 0
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_creature)
-
-    configureUI()
-    configureSpinnerAdapters()
-    configureSpinnerListeners()
-    configureEditText()
-    configureClickListeners()
-  }
-
-  private fun configureUI() {
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    title = getString(R.string.add_creature)
-    // TODO: hide label
-  }
-
-  private fun configureSpinnerAdapters() {
-    intelligence.adapter = ArrayAdapter<AttributeValue>(this,
-        android.R.layout.simple_spinner_dropdown_item, AttributeStore.INTELLIGENCE)
-    strength.adapter = ArrayAdapter<AttributeValue>(this,
-        android.R.layout.simple_spinner_dropdown_item, AttributeStore.STRENGTH)
-    endurance.adapter = ArrayAdapter<AttributeValue>(this,
-        android.R.layout.simple_spinner_dropdown_item, AttributeStore.ENDURANCE)
-  }
-
-  private fun configureSpinnerListeners() {
-    intelligence.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-      override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // TODO: handle selection
-      }
-      override fun onNothingSelected(parent: AdapterView<*>?) {}
-    }
-    strength.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-      override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // TODO: handle selection
-      }
-      override fun onNothingSelected(parent: AdapterView<*>?) {}
-    }
-    endurance.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-      override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        // TODO: handle selection
-      }
-      override fun onNothingSelected(parent: AdapterView<*>?) {}
-    }
-  }
-
-  private fun configureEditText() {
-    nameEditText.addTextChangedListener(object : TextWatcher {
-      override fun afterTextChanged(s: Editable?) {}
-      override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        // TODO: handle text changed
-      }
-    })
-  }
-
-  private fun configureClickListeners() {
-    avatarImageView.setOnClickListener {
-      val bottomDialogFragment = AvatarBottomDialogFragment.newInstance()
-      bottomDialogFragment.show(supportFragmentManager, "AvatarBottomDialogFragment")
+    private var avatarPublishSubject = PublishSubject.create<AddCreatureIntents.SelectAvatarCreatureIntent>()
+    private var namePublishSubject = PublishSubject.create<AddCreatureIntents.EnterCreatureNameIntent>()
+    private var intelligancePublishSubject = PublishSubject.create<AddCreatureIntents.SelectCreatureIntelliganceIntent>()
+    private var strengthPublishSubject = PublishSubject.create<AddCreatureIntents.SelectCreatureStrengthIntent>()
+    private var endurancePublishSubject = PublishSubject.create<AddCreatureIntents.SelectCreatureEnduranceIntent>()
+    private var savePublishSubject = PublishSubject.create<AddCreatureIntents.SaveCreatureAttributesIntent>()
+    private var compositeDisposable = CompositeDisposable()
+    private val viewModel: AddCreatureViewModel by lazy(LazyThreadSafetyMode.NONE) {
+        ViewModelProviders.of(this, AddCreatureViewModelFactory.getInstance(application)).get(AddCreatureViewModel::class.java)
     }
 
-    saveButton.setOnClickListener {
-      // TODO: handle save button clicked
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_creature)
+
+        configureUI()
+        configureSpinnerAdapters()
+        configureSpinnerListeners()
+        configureEditText()
+        configureClickListeners()
     }
-  }
 
-  override fun avatarClicked(avatar: Avatar) {
-    // TODO: handle avatar clicked
-    hideTapLabel()
-  }
+    override fun onStart() {
+        super.onStart()
+        bindLogic()
+    }
 
-  private fun hideTapLabel() {
-    tapLabel.visibility = View.INVISIBLE
-  }
+    private fun configureUI() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        title = getString(R.string.add_creature)
+        // TODO: hide label
+    }
+
+    private fun bindLogic() {
+        compositeDisposable?.add(viewModel?.getStates()?.subscribe(this::render))
+        viewModel?.processIntents(intents())
+    }
+
+    private fun configureSpinnerAdapters() {
+        intelligence.adapter = ArrayAdapter<AttributeValue>(this,
+                android.R.layout.simple_spinner_dropdown_item, AttributeStore.INTELLIGENCE)
+        strength.adapter = ArrayAdapter<AttributeValue>(this,
+                android.R.layout.simple_spinner_dropdown_item, AttributeStore.STRENGTH)
+        endurance.adapter = ArrayAdapter<AttributeValue>(this,
+                android.R.layout.simple_spinner_dropdown_item, AttributeStore.ENDURANCE)
+    }
+
+    private fun configureSpinnerListeners() {
+        intelligence.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                intelliganceValue = position
+                intelligancePublishSubject?.onNext(AddCreatureIntents.SelectCreatureIntelliganceIntent(AttributeStore.INTELLIGENCE.get(position).value))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        strength.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                strengthValue = position
+                strengthPublishSubject?.onNext(AddCreatureIntents.SelectCreatureStrengthIntent(AttributeStore.STRENGTH.get(position).value))
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+        endurance.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                enduranceValue = position
+                endurancePublishSubject?.onNext(AddCreatureIntents.SelectCreatureEnduranceIntent(AttributeStore.ENDURANCE.get(position).value))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+    }
+
+    private fun configureEditText() {
+        nameEditText.addTextChangedListener(object : TextWatcher {
+          override fun afterTextChanged(s: Editable?) {}
+          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            creatureNameValue = s.toString()
+            namePublishSubject?.onNext(AddCreatureIntents.EnterCreatureNameIntent(s.toString()))
+          }
+        })
+    }
+
+    private fun configureClickListeners() {
+        avatarImageView.setOnClickListener {
+            val bottomDialogFragment = AvatarBottomDialogFragment.newInstance()
+            bottomDialogFragment.show(supportFragmentManager, "AvatarBottomDialogFragment")
+        }
+
+        saveButton.setOnClickListener {
+            savePublishSubject?.onNext(AddCreatureIntents.SaveCreatureAttributesIntent(currentImageValue, creatureNameValue, strengthValue, intelliganceValue, enduranceValue))
+        }
+    }
+
+    override fun avatarClicked(avatar: Avatar) {
+        currentImageValue = avatar.drawable
+        avatarPublishSubject?.onNext(AddCreatureIntents.SelectAvatarCreatureIntent(avatar?.drawable))
+        hideTapLabel()
+    }
+
+    private fun hideTapLabel() {
+        tapLabel.visibility = View.INVISIBLE
+    }
+
+    override fun render(states: AddCreatureState) {
+        avatarImageView?.setImageResource(states.creature.drawable)
+        hitPoints?.setText("${states?.creature?.attributes?.endurance + states?.creature?.attributes?.strength + states?.creature?.attributes?.intelligence}")
+        if (states.isProcessing == true) {
+            Toast.makeText(this, "Processing", Toast.LENGTH_SHORT).show()
+        }
+        if (states.isSaveCompleted == true) {
+          Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+          this.finish()
+        }
+    }
+
+    override fun intents(): Observable<AddCreatureIntents> {
+        return Observable.merge(avatarPublishSubject, namePublishSubject, intelligancePublishSubject, strengthPublishSubject)
+                .mergeWith(endurancePublishSubject)
+                .mergeWith(savePublishSubject)
+    }
+
+
 }

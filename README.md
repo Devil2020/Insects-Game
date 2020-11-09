@@ -1,6 +1,6 @@
 # Insects Game
 
-<img   width="350" src=https://raw.githubusercontent.com/Devil2020/Insects-Game/master/images/Screenshot_1604907688.png> <img   width="350"  src=https://raw.githubusercontent.com/Devil2020/Insects-Game/master/images/Screenshot_1604907694.png>
+<img   width="380" src=https://raw.githubusercontent.com/Devil2020/Insects-Game/master/images/Screenshot_1604907688.png> <img   width="380"  src=https://raw.githubusercontent.com/Devil2020/Insects-Game/master/images/Screenshot_1604907694.png>
 
 # Insect Game is an Android Application for Course Online as Training for Students.
 
